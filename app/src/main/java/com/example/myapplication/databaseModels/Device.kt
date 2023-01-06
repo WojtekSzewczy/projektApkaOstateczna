@@ -1,6 +1,6 @@
 package com.example.myapplication.databaseModels
 
-data class Device(val deviceid: Int, val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String)
+data class Device(val deviceid: Int, val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String, val MACaddress : String)
 
 
 class DeviceTable {
@@ -15,5 +15,6 @@ class DeviceTable {
         const val COLUMN_CONNECTION = "Connection"
         const val COLUMN_GOOGLEASSISTANT = "GoogleAssistant"
         const val COLUMN_LOCATION = "Location"
+        const val COLUMN_MACADDRESS = "MACAddress"
     }
 }

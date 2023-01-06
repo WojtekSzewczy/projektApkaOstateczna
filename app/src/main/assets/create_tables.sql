@@ -27,6 +27,7 @@ create table Device
     Connection         TEXT              not null,
     "Google Assistant" integer default 0 not null,
     Location           TEXT              not null,
+    MACAddress            TEXT              not null,
     check ("Google Assistant" IN (0, 1)),
     check ("Wi-Fi" IN (0, 1))
 );
