@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/mainFragment3">
+    <fragment
+        android:id="@+id/mainFragment3"
+        android:name="com.example.myapplication.LoginRegisterFragments.LoginFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment3_to_devicesFragment"
+            app:destination="@id/devicesFragment" />
+        <action
+            android:id="@+id/action_mainFragment3_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/devicesFragment"
+        android:name="com.example.myapplication.mainFragments.DevicesFragment"
+        android:label="fragment_devices"
+        tools:layout="@layout/fragment_devices" >
+        <action
+            android:id="@+id/action_devicesFragment_to_newDeviceFragment"
+            app:destination="@id/newDeviceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomsFragment"
+        android:name="com.example.myapplication.mainFragments.RoomsFragment"
+        android:label="fragment_rooms"
+        tools:layout="@layout/fragment_rooms" >
+        <action
+            android:id="@+id/action_roomsFragment_to_selectedRoomFragment"
+            app:destination="@id/selectedRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myDevicesFragment"
+        android:name="com.example.myapplication.mainFragments.MyDevicesFragment"
+        android:label="fragment_my_devices"
+        tools:layout="@layout/fragment_my_devices" >
+        <action
+            android:id="@+id/action_myDevicesFragment_to_selectedDeviceFragment"
+            app:destination="@id/selectedDeviceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.myapplication.LoginRegisterFragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_mainFragment3"
+            app:destination="@id/mainFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedDeviceFragment"
+        android:name="com.example.myapplication.secondaryFragments.SelectedDeviceFragment"
+        android:label="fragment_selected_device"
+        tools:layout="@layout/fragment_selected_device" >
+        <argument
+            android:name="result"
+            app:argType="android.bluetooth.le.ScanResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/newDeviceFragment"
+        android:name="com.example.myapplication.secondaryFragments.NewDeviceFragment"
+        android:label="fragment_new_device"
+        tools:layout="@layout/fragment_new_device" >
+        <argument android:name="scanResult"
+            app:argType="android.bluetooth.le.ScanResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedRoomFragment"
+        android:name="com.example.myapplication.secondaryFragments.SelectedRoomFragment"
+        android:label="fragment_selected_room"
+        tools:layout="@layout/fragment_selected_room" >
+        <argument
+            android:name="roomID"
+            app:argType="integer" />
+    </fragment>
+</navigation>

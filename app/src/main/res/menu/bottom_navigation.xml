@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Item"
+        android:icon="@drawable/ic_baseline_build_24"
+        android:id="@+id/myDevicesFragment"/>
+    <item android:title="Item"
+        android:icon="@drawable/ic_baseline_brightness_1_24"
+        android:id="@+id/devicesFragment"/>
+    <item android:title="Item"
+        android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
+        android:id="@+id/roomsFragment"/>
+</menu>
