@@ -3,14 +3,18 @@ package com.example.myapplication.databaseHandlers
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.myapplication.databaseModels.User
 import com.example.myapplication.databaseModels.UserTable
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Arrays
+import java.security.MessageDigest
+import java.util.Base64
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
 {
     companion object {
@@ -77,14 +81,27 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         return id
     }
 
+
     fun getUser(login: String, password: String): User? {
         val db = readableDatabase
+
+        // Pobierz instancję klasy MessageDigest z algorytmem SHA-256
+        val md = MessageDigest.getInstance("SHA-256")
+
+        // Przekonwertuj hasło na tablicę bajtów
+        val passwordBytes = password.toByteArray(Charsets.UTF_8)
+
+        // Oblicz skrót hasła
+        val hash = md.digest(passwordBytes)
+
+        // Konwertuj skrót na ciąg znaków w formacie Base64
+        val hashPassword = Base64.getEncoder().encodeToString(hash)
 
         val cursor = db.query(
             UserTable.TABLE_NAME,
             null,
             "${UserTable.COLUMN_LOGIN} = ? AND ${UserTable.COLUMN_PASSWORD} = ?",
-            arrayOf(login, password),
+            arrayOf(login, hashPassword),
             null,
             null,
             null
