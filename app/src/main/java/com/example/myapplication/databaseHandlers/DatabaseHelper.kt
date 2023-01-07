@@ -4,6 +4,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import com.example.myapplication.databaseModels.Device
+import com.example.myapplication.databaseModels.DeviceTable
 import com.example.myapplication.databaseModels.User
 import com.example.myapplication.databaseModels.UserTable
 import java.io.File
@@ -16,6 +18,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
     companion object {
         private const val DATABASE_NAME = "database"
         private const val DATABASE_VERSION = 1
+
     }
 
     private fun copyDatabaseFromAssets() {
@@ -127,6 +130,36 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         cursor.close()
         db.close()
         return users
+    }
+    fun addDevice(device: Device) {
+        val db = writableDatabase
+
+        val values = device.toContentValues()
+        db.insert(UserTable.TABLE_NAME, null, values)
+        db.close()
+    }
+    fun getAllDevices(): MutableList<Device> {
+
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM ${DeviceTable.TABLE_NAME}", null)
+        val devices = mutableListOf<Device>()
+        while (cursor.moveToNext()) {
+            val device = Device(
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_DEVICEID)).toInt(),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_OWNERID)).toInt(),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_PASSWORD)),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_TYPE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_DESCRIPTION)),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_WIFI)).toInt(),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_CONNECTION)),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_GOOGLEASSISTANT)).toInt(),
+                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_LOCATION)),
+                )
+            devices.add(device)
+        }
+        cursor.close()
+        db.close()
+        return devices
     }
 
 

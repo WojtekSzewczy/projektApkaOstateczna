@@ -22,6 +22,7 @@ class SelectedRoomFragment : Fragment() {
             }
         })
     }
+
 //TODO sprawdzenie czy jest autorem user, i w zaleznosci od tego edycja
     //TODO dolaczanie do pokoju ewentualnie wyswietlic urządzenia
     //TODO haslo do pokoju limit osób

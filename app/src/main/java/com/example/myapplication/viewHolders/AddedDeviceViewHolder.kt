@@ -8,7 +8,6 @@ import com.example.myapplication.data.AddedDevice
 import com.example.myapplication.data.ScannedDevice
 import com.example.myapplication.databinding.AddedDeviceLayoutBinding
 import com.example.myapplication.databinding.ScannedDeviceLayoutBinding
-import com.example.myapplication.mainFragments.DevicesFragmentDirections
 import com.example.myapplication.mainFragments.MyDevicesFragmentDirections
 
 class AddedDeviceViewHolder(private val binding: AddedDeviceLayoutBinding) :
@@ -22,6 +21,8 @@ class AddedDeviceViewHolder(private val binding: AddedDeviceLayoutBinding) :
     private fun onClick(device: AddedDevice) {
         binding.device.setOnClickListener {
             Log.v("click",device.address)
+
+
 
             val action = MyDevicesFragmentDirections.actionMyDevicesFragmentToSelectedDeviceFragment(device.result)
             Navigation.findNavController(binding.root).navigate(action)

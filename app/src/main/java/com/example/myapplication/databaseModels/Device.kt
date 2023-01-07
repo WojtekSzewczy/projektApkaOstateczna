@@ -1,8 +1,23 @@
 package com.example.myapplication.databaseModels
 
-data class Device(val deviceid: Int, val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String)
+import android.content.ContentValues
+
+data class Device(val deviceid: Int, val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String) {
+
+    fun toContentValues() = ContentValues().apply {
+        put(DeviceTable.COLUMN_DEVICEID, deviceid)
+        put(DeviceTable.COLUMN_OWNERID, ownerid)
+        put(DeviceTable.COLUMN_PASSWORD, password)
+        put(DeviceTable.COLUMN_TYPE, type)
+        put(DeviceTable.COLUMN_DESCRIPTION, description)
+        put(DeviceTable.COLUMN_WIFI, wifi)
+        put(DeviceTable.COLUMN_CONNECTION, connection)
+        put(DeviceTable.COLUMN_GOOGLEASSISTANT, googleassistant)
+        put(DeviceTable.COLUMN_LOCATION, location)
 
 
+    }
+}
 class DeviceTable {
     companion object {
         const val TABLE_NAME = "Device"

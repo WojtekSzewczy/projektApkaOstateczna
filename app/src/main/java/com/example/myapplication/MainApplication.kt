@@ -16,6 +16,8 @@ class MainApplication : Application() {
     }
 
     companion object {
+        val adminID =1
+        var isAdmin: Boolean = false
         lateinit var appContext: Context
         lateinit var currentUser: User
         val rooms = mutableListOf<Room>()

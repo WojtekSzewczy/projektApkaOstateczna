@@ -1,14 +1,12 @@
 package com.example.myapplication.mainFragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import com.example.myapplication.Adapters.DeviceAdapter
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
@@ -17,7 +15,7 @@ import com.example.myapplication.databinding.FragmentDevicesBinding
 import com.example.myapplication.mainFragments.viewModels.DevicesViewModel
 
 
-class DevicesFragment : Fragment() {
+class ScanFragment : Fragment() {
 
     private lateinit var view: FragmentDevicesBinding
     private val viewModel : DevicesViewModel by viewModels()

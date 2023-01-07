@@ -12,12 +12,14 @@ import com.example.myapplication.Adapters.DeviceAdapter
 import com.example.myapplication.MainActivity
 import com.example.myapplication.MainApplication
 import com.example.myapplication.R
+import com.example.myapplication.databaseHandlers.DatabaseHelper
 import com.example.myapplication.databinding.FragmentMyDevicesBinding
 
 
 class MyDevicesFragment : Fragment() {
     private lateinit var view :FragmentMyDevicesBinding
     private val adapter = AddedDeviceAdapter()
+    private lateinit var db: DatabaseHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,8 @@ class MyDevicesFragment : Fragment() {
             override fun handleOnBackPressed() {
             }
         })
+        db = DatabaseHelper(requireContext())
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +39,7 @@ class MyDevicesFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view =  FragmentMyDevicesBinding.inflate(inflater, container, false)
-        adapter.submitList(MainApplication.currentUser.userDevices)
+        adapter.submitList(db.getAllDevices())
         view.devicesList.adapter=adapter
 
 

@@ -15,7 +15,7 @@ import com.example.myapplication.databaseHandlers.DatabaseHelper
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var view:FragmentRegisterBinding
+    private lateinit var view: FragmentRegisterBinding
     private lateinit var db: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,24 +31,28 @@ class RegisterFragment : Fragment() {
         view = FragmentRegisterBinding.inflate(inflater, container, false)
 
         view.button3.setOnClickListener {
-            val login = view.editTextTextLoginAddress2.text.toString()
-            val password = view.editTextTextPassword.text.toString()
-            val password2 = view.editTextTextPassword2.text.toString()
+            val login = view.Login.text.toString()
+            val name = view.Name.text.toString()
+            val surname = view.Surname.text.toString()
+            val position = view.Position.text.toString()
+            val email = view.editTextTextEmailAddress.text.toString()
+            val password = view.Password.text.toString()
+            val password2 = view.RepeatPassword.text.toString()
 
             // TODO add more fields to register
 
-            if(login == "" || password == "" || password2 == ""){
+            if (login == "" || password == "" || password2 == "" || name == "" || surname == "" || position == "" || email == "") {
                 Toast.makeText(requireContext(), "Fill all fields", Toast.LENGTH_SHORT).show()
-            }
-            else if(password != password2){
-                Toast.makeText(requireContext(), "Passwords are not the same", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else if (password != password2) {
+                Toast.makeText(requireContext(), "Passwords are not the same", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 Toast.makeText(requireContext(), "User created", Toast.LENGTH_SHORT).show()
-                val user = User("adam", "adam", "pracownik", "test", login, password)
+                val user = User(name, surname, position, email, login, password)
                 db.addUser(user)
                 Toast.makeText(requireContext(), "User created", Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(view.root).navigate(R.id.action_registerFragment_to_mainFragment3)
+                Navigation.findNavController(view.root)
+                    .navigate(R.id.action_registerFragment_to_mainFragment3)
             }
         }
 

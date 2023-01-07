@@ -8,6 +8,7 @@ data class User(val Name: String, val Surname : String, val Position : String, v
     val userDevices = mutableListOf<AddedDevice>()
 
     fun addDevice(device : AddedDevice){
+
         userDevices.add(device)
     }
 
