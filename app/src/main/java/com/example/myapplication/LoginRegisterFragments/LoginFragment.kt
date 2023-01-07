@@ -12,6 +12,8 @@ import com.example.myapplication.MainApplication
 import com.example.myapplication.R
 import com.example.myapplication.databaseHandlers.DatabaseHelper
 import com.example.myapplication.databinding.FragmentMainBinding
+import java.security.MessageDigest
+import java.util.Base64
 
 
 class LoginFragment : Fragment() {
