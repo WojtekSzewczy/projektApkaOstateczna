@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.myapplication.data.Room
 import com.example.myapplication.data.ScannedDevice
+import com.example.myapplication.databaseModels.Room
 import com.example.myapplication.databinding.RoomLayoutBinding
 import com.example.myapplication.databinding.ScannedDeviceLayoutBinding
 import com.example.myapplication.viewHolders.DeviceViewHolder
@@ -27,7 +27,7 @@ class RoomsAdapter : ListAdapter<Room, RoomViewHolder>(RoomCallback()) {
 
 class RoomCallback : DiffUtil.ItemCallback<Room>() {
     override fun areItemsTheSame(oldItem: Room, newItem: Room): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.roomID == newItem.roomID
     }
 
     override fun areContentsTheSame(oldItem: Room, newItem: Room): Boolean {

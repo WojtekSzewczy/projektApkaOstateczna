@@ -23,6 +23,7 @@ object Scanner {
         bluetoothManager.adapter
     }
 
+
     val scanner = bluetoothAdapter.bluetoothLeScanner
 
     private val scanSettings =

@@ -6,10 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.myapplication.databaseModels.Device
-import com.example.myapplication.databaseModels.DeviceTable
-import com.example.myapplication.databaseModels.User
-import com.example.myapplication.databaseModels.UserTable
+import com.example.myapplication.databaseModels.*
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Arrays
@@ -82,6 +79,8 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         db.close()
         return id
     }
+
+
 
     fun getUser(login: String, password: String): User? {
         val db = readableDatabase
@@ -160,7 +159,6 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         val devices = mutableListOf<Device>()
         while (cursor.moveToNext()) {
             val device = Device(
-                cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_DEVICEID)).toInt(),
                 cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_OWNERID)).toInt(),
                 cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_PASSWORD)),
                 cursor.getString(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_TYPE)),
@@ -177,6 +175,45 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         db.close()
         return devices
     }
+
+    fun getAllRooms(): MutableList<Room> {
+
+    val db = readableDatabase
+    val cursor = db.rawQuery("SELECT * FROM ${RoomTable.TABLE_NAME}", null)
+    val rooms = mutableListOf<Room>()
+    while (cursor.moveToNext()) {
+        val room = Room(
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_OWNERID)).toInt(),
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_NAME)),
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_PASSWORD)),
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_MAXPARTICIPANTS)).toInt(),
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_CREATIONDATETIME)),
+            cursor.getString(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_CLOSEDATETIME)),
+
+            )
+        room.roomID= cursor.getInt(cursor.getColumnIndexOrThrow(RoomTable.COLUMN_ROOMID))
+
+        rooms.add(room)
+    }
+    cursor.close()
+    db.close()
+    return rooms
+}
+    fun addRoom(room: Room) {
+        val db = writableDatabase
+
+        val values = room.toContentValues()
+        db.insert(RoomTable.TABLE_NAME, null, values)
+        db.close()
+    }
+    fun getDevicesinRoom():List<Room> {
+
+    }
+    fun getRommByID(id:Int):Room{
+
+    }
+    fun addRommHistory():
+
 
 
 }

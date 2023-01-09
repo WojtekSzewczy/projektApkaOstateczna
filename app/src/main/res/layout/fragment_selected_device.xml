@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finishDate"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".secondaryFragments.SelectedDeviceFragment">
 
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/deviceName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -20,12 +21,56 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerRooms"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/deviceName" />
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <EditText
+        android:id="@+id/StartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="239dp" />
+
+    <EditText
+        android:id="@+id/editTextDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <EditText
+        android:id="@+id/finishTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="403dp" />
+
+    <Button
+        android:id="@+id/AcceptReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="555dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

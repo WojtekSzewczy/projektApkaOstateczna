@@ -1,11 +1,13 @@
 package com.example.myapplication.LoginRegisterFragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.example.myapplication.MainActivity
 import com.example.myapplication.MainApplication
@@ -21,11 +23,13 @@ class LoginFragment : Fragment() {
     private lateinit var view: FragmentMainBinding
     private lateinit var db: DatabaseHelper
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = DatabaseHelper(requireContext())
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +44,7 @@ class LoginFragment : Fragment() {
             val userid= db.getUserId(login, password)
             if (user != null) {
                 MainApplication.currentUser = user
+                MainApplication.currentUserID=userid
 
                 if(userid==MainApplication.adminID){
                     MainApplication.isAdmin=true
@@ -57,6 +62,10 @@ class LoginFragment : Fragment() {
             Navigation.findNavController(view.root)
                 .navigate(R.id.action_mainFragment3_to_registerFragment)
 
+        }
+        view.passwordChange.setOnClickListener {
+            Navigation.findNavController(view.root)
+                .navigate(R.id.action_mainFragment3_to_changePassword)
         }
 
         return view.root

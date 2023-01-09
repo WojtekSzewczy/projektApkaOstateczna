@@ -20,6 +20,7 @@ class RegisterFragment : Fragment() {
     private lateinit var view: FragmentRegisterBinding
     private lateinit var db: DatabaseHelper
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = DatabaseHelper(requireContext())

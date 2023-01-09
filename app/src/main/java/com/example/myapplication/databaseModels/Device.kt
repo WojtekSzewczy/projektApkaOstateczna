@@ -2,10 +2,11 @@ package com.example.myapplication.databaseModels
 
 import android.content.ContentValues
 
-data class Device(val deviceid: Int, val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String, val MACaddress : String){
+data class Device( val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String, val MACaddress : String){
+
+    var isReserved=false
 
     fun toContentValues() = ContentValues().apply {
-        put(DeviceTable.COLUMN_DEVICEID, deviceid)
         put(DeviceTable.COLUMN_OWNERID, ownerid)
         put(DeviceTable.COLUMN_PASSWORD, password)
         put(DeviceTable.COLUMN_TYPE, type)
@@ -14,6 +15,8 @@ data class Device(val deviceid: Int, val ownerid: Int, val password: String, val
         put(DeviceTable.COLUMN_CONNECTION, connection)
         put(DeviceTable.COLUMN_GOOGLEASSISTANT, googleassistant)
         put(DeviceTable.COLUMN_LOCATION, location)
+        put(DeviceTable.COLUMN_MACADDRESS, MACaddress)
+
 
 
     }

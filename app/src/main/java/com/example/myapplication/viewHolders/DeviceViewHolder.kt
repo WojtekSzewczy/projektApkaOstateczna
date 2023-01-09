@@ -1,5 +1,6 @@
 package com.example.myapplication.viewHolders
 
+import android.graphics.Color
 import android.util.Log
 import android.widget.Toast
 import androidx.navigation.Navigation
@@ -21,6 +22,7 @@ class DeviceViewHolder(private val binding: ScannedDeviceLayoutBinding) :
     private fun onClick(device: ScannedDevice) {
         binding.device.setOnClickListener {
             Log.v("click", device.address)
+
 
             if (MainApplication.isAdmin) {
                 val action =
@@ -47,8 +49,12 @@ class DeviceViewHolder(private val binding: ScannedDeviceLayoutBinding) :
 
 
     private fun setText(device: ScannedDevice) {
+        if(device.result.rssi>-90){
+            binding.device.setBackgroundColor(Color.GREEN)
+        }
         binding.deviceAddress.text = device.address
         binding.deviceName.text = device.name
+        binding.rssiTextVIew.text=device.result.rssi.toString()
     }
 
 }

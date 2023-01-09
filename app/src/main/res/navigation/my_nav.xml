@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_mainFragment3_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_mainFragment3_to_changePassword"
+            app:destination="@id/changePassword" />
     </fragment>
     <fragment
         android:id="@+id/devicesFragment"
@@ -33,6 +36,9 @@
         <action
             android:id="@+id/action_roomsFragment_to_selectedRoomFragment"
             app:destination="@id/selectedRoomFragment" />
+        <action
+            android:id="@+id/action_roomsFragment_to_newRoom"
+            app:destination="@id/newRoom" />
     </fragment>
     <fragment
         android:id="@+id/myDevicesFragment"
@@ -58,8 +64,8 @@
         android:label="fragment_selected_device"
         tools:layout="@layout/fragment_selected_device" >
         <argument
-            android:name="result"
-            app:argType="android.bluetooth.le.ScanResult" />
+            android:name="deviceID"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/newDeviceFragment"
@@ -78,4 +84,19 @@
             android:name="roomID"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/newRoom"
+        android:name="com.example.myapplication.NewRoom"
+        android:label="fragment_new_room"
+        tools:layout="@layout/fragment_new_room" />
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.myapplication.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/pairedDeviceFragment"
+        android:name="com.example.myapplication.PairedDeviceFragment"
+        android:label="fragment_paired_device"
+        tools:layout="@layout/fragment_paired_device" />
 </navigation>

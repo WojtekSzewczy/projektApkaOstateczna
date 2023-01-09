@@ -3,14 +3,19 @@ package com.example.myapplication.databaseModels
 import android.content.ContentValues
 
 data class Room(
-    val ownerid: Int,
-    val name: String,
-    val password: String,
-    val maxparticipants: Int,
-    val creationdatetime: String,
-    val closedatetime: String
+    var ownerid: Int,
+    var name: String,
+    var password: String,
+    var maxparticipants: Int,
+    var creationdatetime: String,
+    var closedatetime: String
 )
 {
+    companion object{
+        fun new()=Room(-1,"","",-1,"","")
+    }
+    var roomID=-1
+
     fun toContentValues() = ContentValues().apply {
         put(RoomTable.COLUMN_OWNERID, ownerid)
         put(RoomTable.COLUMN_NAME, name)
