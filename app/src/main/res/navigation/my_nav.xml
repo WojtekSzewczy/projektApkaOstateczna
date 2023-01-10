@@ -86,9 +86,9 @@
     </fragment>
     <fragment
         android:id="@+id/newRoomFragment"
-        android:name="com.example.myapplication.secondaryFragments.NewRoomFragment"
+        android:name="com.example.myapplication.NewRoomFragment2"
         android:label="fragment_new_room"
-        tools:layout="@layout/fragment_new_room"/>
+        tools:layout="@layout/fragment_new_room2"/>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.myapplication.LoginRegisterFragments.ChangePasswordFragment"

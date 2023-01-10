@@ -11,8 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.databaseHandlers.DatabaseHelper
-import com.example.myapplication.databaseModels.User
+import com.example.myapplication.databaseHandlers.databases.MyAppDatabase
+import com.example.myapplication.databaseHandlers.repositories.UserRepository
 import com.example.myapplication.databinding.FragmentChangePasswordBinding
 import com.example.myapplication.databinding.FragmentRegisterBinding
 
@@ -28,12 +28,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class ChangePassword : Fragment() {
     private lateinit var view: FragmentChangePasswordBinding
-    private lateinit var db: DatabaseHelper
+    private lateinit var userRepository: UserRepository
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        db = DatabaseHelper(requireContext())
+        userRepository = UserRepository(requireContext())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

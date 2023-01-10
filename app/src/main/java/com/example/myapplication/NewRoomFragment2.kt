@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
-import com.example.myapplication.databaseHandlers.DatabaseHelper
-import com.example.myapplication.databaseModels.Room
+import com.example.myapplication.databaseHandlers.models.MyRoom
+import com.example.myapplication.databaseHandlers.repositories.MyRoomRepository
 import com.example.myapplication.databinding.FragmentNewRoom2Binding
 import com.example.myapplication.databinding.FragmentNewRoomBinding
 import java.util.*
 
 class NewRoomFragment2 : Fragment() {
     private lateinit var view: FragmentNewRoom2Binding
-    private lateinit var db: DatabaseHelper
+    private lateinit var myRoomRepository: MyRoomRepository
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -28,7 +28,7 @@ class NewRoomFragment2 : Fragment() {
                 view.root.findNavController().navigateUp()
             }
         })
-        db = DatabaseHelper(requireContext())
+        myRoomRepository = MyRoomRepository(requireContext())
 
     }
 
@@ -51,8 +51,8 @@ class NewRoomFragment2 : Fragment() {
             val roomName = view.roomName.text.toString()
             val roomPassword =view.roomPassword.text.toString()
             val roomMax= view.roomMax.text.toString().toInt()
-            val room= Room(MainApplication.currentUserID,roomName,roomPassword,roomMax,currentDate,currentDate)
-            db.addRoom(room)
+            val room= MyRoom(MainApplication.currentUserID,roomName,roomPassword,roomMax,currentDate,currentDate)
+            myRoomRepository.addRoom(room)
             view.root.findNavController().navigateUp()
 
         }
