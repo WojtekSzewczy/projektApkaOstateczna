@@ -103,7 +103,7 @@ create table User_Device
         constraint User_FK
             references User
             on update cascade on delete cascade,
-    Owner    integer default 0 not null,
-    check (Owner IN (0, 1))
+    OwnerID    integer default 0 not null,
+    check (OwneriD IN (0, 1))
 );
 

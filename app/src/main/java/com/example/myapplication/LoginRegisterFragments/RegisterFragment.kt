@@ -10,19 +10,20 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.example.myapplication.R
+import com.example.myapplication.databaseHandlers.repositories.UserRepository
 import com.example.myapplication.databinding.FragmentRegisterBinding
-import com.example.myapplication.databaseModels.User
-import com.example.myapplication.databaseHandlers.DatabaseHelper
+import com.example.myapplication.databaseHandlers.models.User
 
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var view:FragmentRegisterBinding
-    private lateinit var db: DatabaseHelper
+    private lateinit var view: FragmentRegisterBinding
+    private lateinit var userRepository: UserRepository
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        db = DatabaseHelper(requireContext())
+        userRepository = UserRepository(requireContext())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -34,24 +35,28 @@ class RegisterFragment : Fragment() {
         view = FragmentRegisterBinding.inflate(inflater, container, false)
 
         view.button3.setOnClickListener {
-            val login = view.editTextTextLoginAddress2.text.toString()
-            val password = view.editTextTextPassword.text.toString()
-            val password2 = view.editTextTextPassword2.text.toString()
+            val login = view.Login.text.toString()
+            val name = view.Name.text.toString()
+            val surname = view.Surname.text.toString()
+            val position = view.Position.text.toString()
+            val email = view.editTextTextEmailAddress.text.toString()
+            val password = view.Password.text.toString()
+            val password2 = view.RepeatPassword.text.toString()
 
             // TODO add more fields to register
 
-            if(login == "" || password == "" || password2 == ""){
+            if (login == "" || password == "" || password2 == "" || name == "" || surname == "" || position == "" || email == "") {
                 Toast.makeText(requireContext(), "Fill all fields", Toast.LENGTH_SHORT).show()
-            }
-            else if(password != password2){
-                Toast.makeText(requireContext(), "Passwords are not the same", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else if (password != password2) {
+                Toast.makeText(requireContext(), "Passwords are not the same", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 Toast.makeText(requireContext(), "User created", Toast.LENGTH_SHORT).show()
-                val user = User("adam", "adam", "pracownik", "test", login, password)
-                db.addUser(user)
+                val user = User(name, surname, position, email, login, password)
+                userRepository.addUser(user)
                 Toast.makeText(requireContext(), "User created", Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(view.root).navigate(R.id.action_registerFragment_to_mainFragment3)
+                Navigation.findNavController(view.root)
+                    .navigate(R.id.action_registerFragment_to_mainFragment3)
             }
         }
 

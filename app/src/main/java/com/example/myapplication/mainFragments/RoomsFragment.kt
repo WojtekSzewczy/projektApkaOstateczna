@@ -1,39 +1,40 @@
 package com.example.myapplication.mainFragments
 
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.viewModels
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
-import com.example.myapplication.Adapters.AddedDeviceAdapter
 import com.example.myapplication.Adapters.RoomsAdapter
 import com.example.myapplication.MainActivity
-import com.example.myapplication.MainApplication
-import com.example.myapplication.R
-import com.example.myapplication.databaseHandlers.DatabaseHelper
-import com.example.myapplication.databaseModels.User
+import com.example.myapplication.databaseHandlers.repositories.MyRoomRepository
 import com.example.myapplication.databinding.FragmentRoomsBinding
-import com.example.myapplication.mainFragments.viewModels.DevicesViewModel
-import com.example.myapplication.mainFragments.viewModels.RoomsViewModel
 
 
 class RoomsFragment : Fragment() {
    private lateinit var view: FragmentRoomsBinding
     private val adapter = RoomsAdapter()
-    private val viewModel : RoomsViewModel by viewModels()
+   // private val  : RoomsViewModel by viewModels()
+    private lateinit var myRoomRepository: MyRoomRepository
 
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
             }
         })
+        myRoomRepository = MyRoomRepository(requireContext())
+
+
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
 
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,32 +44,25 @@ class RoomsFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view = FragmentRoomsBinding.inflate(inflater, container, false)
-        adapter.submitList(MainApplication.rooms)
+        adapter.submitList(myRoomRepository.getAllRooms())
 
         view.roomsList.adapter=adapter
 
         view.addRoomButton.setOnClickListener {
-            viewModel.addRoom()
+
+            val action = RoomsFragmentDirections.actionRoomsFragmentToNewRoom()
+            Navigation.findNavController(view.root).navigate(action)
+
         }
-
-        observeViewModelState()
-
-
-        val newUser = User("Paweł","Kowalski","Developer","pk@gmail.com","pk","123")
-
-        val db = DatabaseHelper(requireContext())
-        db.addUser(newUser)
-
 
         return view.root
     }
 
-    private fun observeViewModelState() {
-        viewModel.roomsLiveData.observe(viewLifecycleOwner){rooms ->
-            adapter.apply { submitList(rooms) }
-        }
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onResume() {
+        super.onResume()
+        adapter.submitList(myRoomRepository.getAllRooms())
     }
-
 }
 
 

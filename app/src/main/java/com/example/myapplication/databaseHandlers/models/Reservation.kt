@@ -1,12 +1,17 @@
-package com.example.myapplication.databaseModels
+package com.example.myapplication.databaseHandlers.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "reservation")
 data class Reservation(
-    val reservationid: Int,
-    val bookerid: Int,
-    val reservationstart: String,
-    val reservationend: String
-)
+    var bookerID: Int,
+    var reservationStart:String,
+    var reservationEnd:String)
+{
+    @PrimaryKey(autoGenerate = true)
+    var reservationID: Int = 0
+}
 
 class ReservationTable{
     companion object {

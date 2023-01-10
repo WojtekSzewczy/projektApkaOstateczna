@@ -29,8 +29,8 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="androidx.room.database.DEFAULT_DATABASE_NAME"
+                android:value="user_database" />
         </activity>
     </application>
 

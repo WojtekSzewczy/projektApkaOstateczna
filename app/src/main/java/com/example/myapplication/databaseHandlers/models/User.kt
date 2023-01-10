@@ -1,31 +1,43 @@
-package com.example.myapplication.databaseModels
+package com.example.myapplication.databaseHandlers.models
 
 import android.content.ContentValues
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.example.myapplication.data.AddedDevice
 import java.security.MessageDigest
 import java.util.Base64
 
 @RequiresApi(Build.VERSION_CODES.O)
-data class User(val Name: String, val Surname : String, val Position : String, val Email : String, val Login : String, var Password : String)
+
+@Entity(tableName = "User")
+data class User(
+                var Name: String,
+                var Surname : String,
+                var Position : String,
+                var Email : String,
+                var Login : String,
+                var Password : String)
 {
+    @PrimaryKey(autoGenerate = true)
+    var UserID: Int = 0
+
+    @Ignore
     val userDevices = mutableListOf<AddedDevice>()
     init{
-        // Pobierz instancję klasy MessageDigest z algorytmem SHA-256
         val md = MessageDigest.getInstance("SHA-256")
 
-        // Przekonwertuj hasło na tablicę bajtów
         val passwordBytes = Password.toByteArray(Charsets.UTF_8)
 
-        // Oblicz skrót hasła
         val hash = md.digest(passwordBytes)
 
-        //Konwertuj skrót na ciąg znaków w formacie Base64
         Password = Base64.getEncoder().encodeToString(hash)
     }
 
     fun addDevice(device : AddedDevice){
+
         userDevices.add(device)
     }
 
