@@ -5,6 +5,7 @@ import android.content.ContentValues
 data class Device( val ownerid: Int, val password: String, val type:String, val description:String, val wifi: Int, val connection:String, val googleassistant : Int, val location: String, val MACaddress : String){
 
     var isReserved=false
+    var id:Int=-1
 
     fun toContentValues() = ContentValues().apply {
         put(DeviceTable.COLUMN_OWNERID, ownerid)

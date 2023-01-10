@@ -57,6 +57,12 @@ class ScanFragment : Fragment() {
         Scanner.clearScanList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Scanner.clearScanList()
+
+    }
+
     private fun observeViewModelState() {
         viewModel.devices.observe(viewLifecycleOwner) { devices ->
             adapter.apply {

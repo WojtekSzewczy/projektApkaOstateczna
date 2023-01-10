@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.myapplication.MainActivity
 import com.example.myapplication.MainApplication
 import com.example.myapplication.R
+import com.example.myapplication.Scanner
 import com.example.myapplication.data.AddedDevice
 import com.example.myapplication.databaseHandlers.DatabaseHelper
 import com.example.myapplication.databaseModels.Device
@@ -53,12 +54,15 @@ class NewDeviceFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view= FragmentNewDeviceBinding.inflate(inflater, container, false)
+
+        view.textview.text=Scanner.uuids
+
         addedDevice= AddedDevice(args.scanResult)
 
         view.editTextTextPersonName.setText(addedDevice.name)
+
         val roomsArray= db.getAllRooms()
 
-        view.textview.text=addedDevice.address
         view.spinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(
@@ -82,6 +86,7 @@ class NewDeviceFragment : Fragment() {
 
                 val device = Device(MainApplication.currentUserID,password,deviceType,description,1,"very high quality my friend",1,"Tylko huta",addedDevice.address)
                 db.addDevice(device)
+
                 addedDevice.setPassword(password)
                 addedDevice.name=description
                 addedDevice.type=deviceType

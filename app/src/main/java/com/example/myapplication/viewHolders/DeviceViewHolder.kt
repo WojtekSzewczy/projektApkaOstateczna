@@ -23,6 +23,8 @@ class DeviceViewHolder(private val binding: ScannedDeviceLayoutBinding) :
         binding.device.setOnClickListener {
             Log.v("click", device.address)
 
+            Scanner.connect(device.result)
+            Thread.sleep(2000)
 
             if (MainApplication.isAdmin) {
                 val action =

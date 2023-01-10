@@ -66,15 +66,55 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         val values = user.toContentValues()
         db.insert(UserTable.TABLE_NAME, null, values)
         db.close()
+        Log.v("addUser","need help")
     }
 
 
 
     fun getUserId(login: String, password: String): Int {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM ${UserTable.TABLE_NAME} WHERE ${UserTable.COLUMN_LOGIN} = '$login' AND ${UserTable.COLUMN_PASSWORD} = '$password'", null)
+        // Pobierz instancję klasy MessageDigest z algorytmem SHA-256
+        val md = MessageDigest.getInstance("SHA-256")
+
+        // Przekonwertuj hasło na tablicę bajtów
+        val passwordBytes = password.toByteArray(Charsets.UTF_8)
+
+        // Oblicz skrót hasła
+        val hash = md.digest(passwordBytes)
+
+        // Konwertuj skrót na ciąg znaków w formacie Base64
+        val hashPassword = Base64.getEncoder().encodeToString(hash)
+
+        val cursor = db.query(
+            UserTable.TABLE_NAME,
+            null,
+            "${UserTable.COLUMN_LOGIN} = ? AND ${UserTable.COLUMN_PASSWORD} = ?",
+            arrayOf(login, hashPassword),
+            null,
+            null,
+            null
+        )
+        if (cursor.moveToFirst()) {
+            val id = cursor.getString(cursor.getColumnIndexOrThrow(UserTable.COLUMN_USERID)).toInt()
+
+            Log.v("DatabaseHelper", id.toString())
+            cursor.close()
+            db.close()
+            return id
+        }
+        cursor.close()
+        db.close()
+        return -1
+    }
+
+    fun getDeviceId(device: Device): Int {
+        val db = readableDatabase
+        val macAddress= device.MACaddress
+
+
+        val cursor = db.rawQuery("SELECT * FROM ${DeviceTable.TABLE_NAME} WHERE ${DeviceTable.COLUMN_MACADDRESS} ='$macAddress'" , null)
         cursor.moveToFirst()
-        val id = cursor.getInt(cursor.getColumnIndexOrThrow(UserTable.COLUMN_USERID))
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(DeviceTable.COLUMN_DEVICEID))
         cursor.close()
         db.close()
         return id
@@ -147,9 +187,11 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
     }
     fun addDevice(device: Device) {
         val db = writableDatabase
+        //device.id=getDeviceId(device)
 
         val values = device.toContentValues()
-        db.insert(UserTable.TABLE_NAME, null, values)
+
+        db.insert(DeviceTable.TABLE_NAME, null, values)
         db.close()
     }
     fun getAllDevices(): MutableList<Device> {
@@ -207,12 +249,14 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         db.close()
     }
     fun getDevicesinRoom():List<Room> {
-
+        //TODO
+        return emptyList()
     }
-    fun getRommByID(id:Int):Room{
+    //fun getRommByID(id:Int):Room{
+    //}
+   // fun addRommHistory():Roomhistory{
 
-    }
-    fun addRommHistory():
+   // }
 
 
 

@@ -1,6 +1,6 @@
 package com.example.myapplication
 
-import android.bluetooth.BluetoothManager
+import android.bluetooth.*
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myapplication.data.ScannedDevice
@@ -22,7 +23,47 @@ object Scanner {
 
         bluetoothManager.adapter
     }
+    public var uuids="kk"
 
+    private val handler = Handler(Looper.getMainLooper())
+    private val DELAY_PERIOD: Long = 500
+
+    private var bluetoothGatt: BluetoothGatt? = null
+
+    private val bluetoothGattCallback = object : BluetoothGattCallback() {
+        override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
+            when (newState) {
+                BluetoothAdapter.STATE_CONNECTED -> {
+                    bluetoothGatt = gatt
+                    gatt.discoverServices()
+                }
+                BluetoothAdapter.STATE_DISCONNECTED -> {
+                    gatt.close()
+                    bluetoothGatt=null
+                }
+            }
+
+        }
+
+        override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
+            super.onServicesDiscovered(gatt, status)
+            gatt.services.forEach {
+                Log.v("Service",it.uuid.toString())
+            }
+            uuids=getUUIDs()
+            Log.v("UUIDs", uuids)
+
+
+        }
+    }
+    fun getUUIDs(): String = buildString {
+        bluetoothGatt?.services?.forEach {
+            append("SERVICE  UUID: ")
+            append(it.uuid)
+            appendLine()
+
+        }
+    }
 
     val scanner = bluetoothAdapter.bluetoothLeScanner
 
@@ -38,7 +79,6 @@ object Scanner {
 
     //private var scanning = false
 
-    private val handler = Handler(Looper.getMainLooper())
 
     private val runnableStoppingScanning = {
         _isScanning.value = false
@@ -96,6 +136,11 @@ object Scanner {
     private fun addDevice(device: ScannedDevice) {
         currentScannedDevices[device.address] = device
         updateScannedDevices()
+    }
+    fun connect(result: ScanResult) {
+        bluetoothGatt = result.device.connectGatt(
+            MainApplication.appContext, false, bluetoothGattCallback
+        )
     }
 
 

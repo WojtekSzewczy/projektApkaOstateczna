@@ -25,7 +25,7 @@ class AddedDeviceViewHolder(private val binding: AddedDeviceLayoutBinding) :
 
 
 
-            val action = MyDevicesFragmentDirections.actionMyDevicesFragmentToSelectedDeviceFragment(device.MACaddress)
+            val action = MyDevicesFragmentDirections.actionMyDevicesFragmentToSelectedDeviceFragment(device.id)
             Navigation.findNavController(binding.root).navigate(action)
 
         }

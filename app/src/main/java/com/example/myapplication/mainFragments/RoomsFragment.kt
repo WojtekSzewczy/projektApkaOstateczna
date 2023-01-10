@@ -52,14 +52,18 @@ class RoomsFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view = FragmentRoomsBinding.inflate(inflater, container, false)
+
         adapter.submitList(db.getAllRooms())
 
         view.roomsList.adapter=adapter
 
         view.addRoomButton.setOnClickListener {
+            Navigation.findNavController(view.root).navigate(R.id.action_roomsFragment_to_newRoomFragment2)
 
-            val action = RoomsFragmentDirections.actionRoomsFragmentToNewRoom()
-            Navigation.findNavController(view.root).navigate(action)
+
+            //val action = RoomsFragmentDirections.actionRoomsFragmentToNewRoom()
+
+           // Navigation.findNavController(view.root).navigate(action)
 
         }
 

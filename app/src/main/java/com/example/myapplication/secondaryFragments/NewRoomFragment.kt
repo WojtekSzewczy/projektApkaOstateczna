@@ -14,10 +14,9 @@ import com.example.myapplication.MainApplication
 import com.example.myapplication.databaseHandlers.DatabaseHelper
 import com.example.myapplication.databaseModels.Room
 import com.example.myapplication.databinding.FragmentNewRoomBinding
-import com.example.myapplication.databinding.FragmentSelectedRoomBinding
 import java.util.*
 
-class NewRoom : Fragment() {
+class NewRoomFragment : Fragment() {
 
     private lateinit var view: FragmentNewRoomBinding
     private lateinit var db: DatabaseHelper

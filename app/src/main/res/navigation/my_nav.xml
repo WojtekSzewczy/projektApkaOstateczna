@@ -38,7 +38,10 @@
             app:destination="@id/selectedRoomFragment" />
         <action
             android:id="@+id/action_roomsFragment_to_newRoom"
-            app:destination="@id/newRoom" />
+            app:destination="@id/newRoomFragment" />
+        <action
+            android:id="@+id/action_roomsFragment_to_newRoomFragment2"
+            app:destination="@id/newRoomFragment2" />
     </fragment>
     <fragment
         android:id="@+id/myDevicesFragment"
@@ -85,7 +88,7 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/newRoom"
+        android:id="@+id/newRoomFragment"
         android:name="com.example.myapplication.NewRoom"
         android:label="fragment_new_room"
         tools:layout="@layout/fragment_new_room" />
@@ -99,4 +102,9 @@
         android:name="com.example.myapplication.PairedDeviceFragment"
         android:label="fragment_paired_device"
         tools:layout="@layout/fragment_paired_device" />
+    <fragment
+        android:id="@+id/newRoomFragment2"
+        android:name="com.example.myapplication.NewRoomFragment2"
+        android:label="fragment_new_room2"
+        tools:layout="@layout/fragment_new_room2" />
 </navigation>
