@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import com.example.myapplication.databaseHandlers.repositories.UserRepository
-import com.example.myapplication.databinding.FragmentChangePasswordBinding
+import com.example.myapplication.databinding.FragmentResetPasswordBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,11 +18,11 @@ import com.example.myapplication.databinding.FragmentChangePasswordBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ChangePasswordFragment.newInstance] factory method to
+ * Use the [ResetPasswordFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ChangePasswordFragment : Fragment() {
-    private lateinit var view: FragmentChangePasswordBinding
+class ResetPasswordFragment : Fragment() {
+    private lateinit var view: FragmentResetPasswordBinding
     private lateinit var userRepository: UserRepository
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -37,7 +37,7 @@ class ChangePasswordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        view = FragmentChangePasswordBinding.inflate(inflater, container, false)
+        view = FragmentResetPasswordBinding.inflate(inflater, container, false)
         val email = view.Email.text.toString()
 
         val password1 = view.newPassword.text.toString()

@@ -17,7 +17,7 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_mainFragment3_to_changePassword"
-            app:destination="@id/changePasswordFragment" />
+            app:destination="@id/resetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/devicesFragment"
@@ -90,10 +90,10 @@
         android:label="fragment_new_room"
         tools:layout="@layout/fragment_new_room2"/>
     <fragment
-        android:id="@+id/changePasswordFragment"
-        android:name="com.example.myapplication.LoginRegisterFragments.ChangePasswordFragment"
-        android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password"/>
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.myapplication.LoginRegisterFragments.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" />
     <fragment
         android:id="@+id/pairedDeviceFragment"
         android:name="com.example.myapplication.PairedDeviceFragment"
