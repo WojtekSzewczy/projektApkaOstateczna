@@ -3,10 +3,7 @@ package com.example.myapplication.databaseHandlers.models
 import android.content.ContentValues
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "device")
 data class Device @RequiresApi(Build.VERSION_CODES.O) constructor(
@@ -34,8 +31,8 @@ data class Device @RequiresApi(Build.VERSION_CODES.O) constructor(
     var deviceID: Int = 0
 
 //    @ForeignKey(entity = User::class, parentColumns = ["UserID"], childColumns = ["OwnerID"], onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE)
-
-    var isReserved=false
+    //@ColumnInfo(name = "isReserved")
+    @Ignore var isReserved=false
 
 }
 

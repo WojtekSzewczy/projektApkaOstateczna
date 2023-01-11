@@ -10,4 +10,7 @@
     <item android:title="Item"
         android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
         android:id="@+id/roomsFragment"/>
+    <item android:title="users"
+        android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
+        android:id="@+id/allUsersFragment"/>
 </menu>

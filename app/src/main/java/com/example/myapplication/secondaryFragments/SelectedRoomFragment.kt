@@ -12,6 +12,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.myapplication.Adapters.DeviceInRoomAdapter
+import com.example.myapplication.Adapters.UsersInRoomAdapter
 import com.example.myapplication.MainActivity
 import com.example.myapplication.MainApplication
 import com.example.myapplication.databaseHandlers.models.MyRoom
@@ -27,6 +29,8 @@ class SelectedRoomFragment : Fragment() {
     private val args: SelectedRoomFragmentArgs by navArgs()
     private lateinit var myRoom: MyRoom
     private lateinit var roomRepository: MyRoomRepository
+    private val usersAdapter = UsersInRoomAdapter()
+    private val devicesAdapter = DeviceInRoomAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +58,8 @@ class SelectedRoomFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view= FragmentSelectedRoomBinding.inflate(inflater, container, false)
+
+        //usersAdapter.submitList()
 
         view.removeRoomButton.setOnClickListener {
             if (MainApplication.isAdmin || MainApplication.currentUserID == myRoom.ownerID)

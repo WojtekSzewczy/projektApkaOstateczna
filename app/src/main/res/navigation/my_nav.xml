@@ -103,4 +103,9 @@
         android:name="com.example.myapplication.PairedDeviceFragment"
         android:label="fragment_paired_device"
         tools:layout="@layout/fragment_paired_device" />
+    <fragment
+        android:id="@+id/allUsersFragment"
+        android:name="com.example.myapplication.AllUsersFragment"
+        android:label="fragment_all_users"
+        tools:layout="@layout/fragment_all_users" />
 </navigation>

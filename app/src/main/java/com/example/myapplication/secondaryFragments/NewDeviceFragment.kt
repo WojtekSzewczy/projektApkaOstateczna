@@ -53,6 +53,7 @@ class NewDeviceFragment : Fragment() {
 
         // Inflate the layout for this fragment
         view= FragmentNewDeviceBinding.inflate(inflater, container, false)
+
         addedDevice= AddedDevice(args.scanResult)
 
         view.editTextTextPersonName.setText(addedDevice.name)
