@@ -13,4 +13,7 @@
     <item android:title="users"
         android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
         android:id="@+id/allUsersFragment"/>
+    <item android:title="account"
+        android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
+        android:id="@+id/accountFragment2"/>
 </menu>

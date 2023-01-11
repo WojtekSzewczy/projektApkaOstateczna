@@ -34,7 +34,7 @@ class RegisterFragment : Fragment() {
 
         view = FragmentRegisterBinding.inflate(inflater, container, false)
 
-        view.button3.setOnClickListener {
+        view.changePassword.setOnClickListener {
             val login = view.Login.text.toString()
             val name = view.Name.text.toString()
             val surname = view.Surname.text.toString()
