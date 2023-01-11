@@ -10,7 +10,7 @@ import com.example.myapplication.databaseHandlers.dao.*
 import com.example.myapplication.databaseHandlers.models.*
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Database(entities = [Device::class, MyRoom::class, Reservation::class, ReservationDevice::class, RoomHistory::class, User::class, UserDevice::class], version = 1, exportSchema = false)
+@Database(entities = [Device::class, MyRoom::class, Reservation::class, ReservationDevice::class, RoomHistory::class, User::class, UserDevice::class, UserRoom::class], version = 1, exportSchema = false)
 abstract class MyAppDatabase : RoomDatabase() {
     abstract fun deviceDao(): DeviceDao
     abstract fun myRoomDao(): MyRoomDao
@@ -19,6 +19,7 @@ abstract class MyAppDatabase : RoomDatabase() {
     abstract fun roomHistoryDao(): RoomHistoryDao
     abstract fun userDao(): UserDao
     abstract fun userDeviceDao(): UserDeviceDao
+    abstract fun userRoomDao(): UserRoomDao
 
 
     companion object {

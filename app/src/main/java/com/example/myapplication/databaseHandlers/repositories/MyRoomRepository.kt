@@ -14,6 +14,16 @@ class MyRoomRepository(context: Context) {
 
     fun addRoom(myRoom: MyRoom)
     {
-        roomDao.addRoom(myRoom.ownerid,myRoom.name,myRoom.password,myRoom.maxParticipants,myRoom.creationDateTime,myRoom.closeDateTime)
+        roomDao.addRoom(myRoom.ownerID,myRoom.name,myRoom.password,myRoom.maxParticipants,myRoom.creationDateTime,myRoom.closeDateTime)
+    }
+
+    fun getRoom(id: Int) : MyRoom
+    {
+        return roomDao.getRoom(id)
+    }
+
+    fun deleteRoom(myRoom: MyRoom)
+    {
+        roomDao.deleteRoom(myRoom)
     }
 }

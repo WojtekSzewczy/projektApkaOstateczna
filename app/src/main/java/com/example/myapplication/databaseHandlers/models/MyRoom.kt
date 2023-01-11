@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Room")
 data class MyRoom(
-    var ownerid: Int,
+    var ownerID: Int,
     var name: String,
     var password: String,
     var maxParticipants: Int,

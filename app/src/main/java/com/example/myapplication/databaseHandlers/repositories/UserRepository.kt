@@ -2,6 +2,7 @@ package com.example.myapplication.databaseHandlers.repositories
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.myapplication.databaseHandlers.databases.MyAppDatabase
 import com.example.myapplication.databaseHandlers.models.User
@@ -30,5 +31,14 @@ class UserRepository(context: Context) {
     fun addUser(user : User)
     {
         userDao.addUser(user.Login, user.Password, user.Name, user.Surname, user.Email, user.Position)
+    }
+
+    fun getAllUsers() : List<User> = userDao.getAllUsers()
+
+    fun checkIfUserExistsByEmail(email : String) : Boolean = userDao.checkIfUserExistsByEmail(email)
+
+    fun updatePassword(email: String, newPassword: String)
+    {
+        userDao.updatePassword(email, newPassword)
     }
 }

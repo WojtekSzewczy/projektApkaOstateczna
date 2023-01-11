@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
+import androidx.core.view.forEach
 import androidx.navigation.Navigation
 import com.example.myapplication.Adapters.RoomsAdapter
 import com.example.myapplication.MainActivity
@@ -49,10 +50,8 @@ class RoomsFragment : Fragment() {
         view.roomsList.adapter=adapter
 
         view.addRoomButton.setOnClickListener {
-
             val action = RoomsFragmentDirections.actionRoomsFragmentToNewRoom()
             Navigation.findNavController(view.root).navigate(action)
-
         }
 
         return view.root

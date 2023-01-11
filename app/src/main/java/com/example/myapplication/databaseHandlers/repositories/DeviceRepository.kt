@@ -1,10 +1,13 @@
 package com.example.myapplication.databaseHandlers.repositories
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.myapplication.databaseHandlers.databases.MyAppDatabase
 import com.example.myapplication.databaseHandlers.models.Device
-
+@RequiresApi(Build.VERSION_CODES.O)
 class DeviceRepository(context: Context) {
+
     private val deviceDao = MyAppDatabase.getInstance(context).deviceDao()
 
     fun getAllDevices() : List<Device> = deviceDao.getAllDevices()
