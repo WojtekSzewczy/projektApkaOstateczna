@@ -17,6 +17,11 @@ class UserRoomRepository(context: Context) {
         userRoomDao.addUserRoom(userRoom)
     }
 
+    fun getUsersID(roomID : Int): List<Int>{
+        return userRoomDao.getUsers(roomID)
+
+    }
+
     fun checkIfUserRoomExists(userID : Int, roomID : Int) : Boolean {
        return userRoomDao.checkIfUserRoomExists(userID, roomID)
     }

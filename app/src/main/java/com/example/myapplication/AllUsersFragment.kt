@@ -36,10 +36,18 @@ class AllUsersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        view =  FragmentAllUsersBinding.inflate(inflater, container, false)
+
+        if(MainApplication.isAdmin){
+            view.warning.visibility=View.GONE
+        }
+        else{
+            view.warning.visibility=View.VISIBLE
+            view.usersList.visibility=View.GONE
+        }
         MainActivity.instance.bottomNavigationView.visibility = View.VISIBLE
 
         // Inflate the layout for this fragment
-        view =  FragmentAllUsersBinding.inflate(inflater, container, false)
         adapter.submitList(usersRepository.getAllUsers())
         view.usersList.adapter=adapter
 

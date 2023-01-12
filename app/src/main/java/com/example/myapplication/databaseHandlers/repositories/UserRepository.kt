@@ -27,6 +27,10 @@ class UserRepository(context: Context) {
         return userDao.getUser(login, hashPassword)
     }
 
+    fun getUserByID(userId: Int):User{
+        return userDao.getUserById(userId)
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun addUser(user : User)
     {

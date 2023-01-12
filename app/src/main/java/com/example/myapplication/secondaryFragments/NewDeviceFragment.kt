@@ -60,6 +60,7 @@ class NewDeviceFragment : Fragment() {
         val roomsArray= myRoomRepository.getAllRooms()
 
         view.textview.text=addedDevice.address
+
         view.spinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(

@@ -43,7 +43,6 @@ class RegisterFragment : Fragment() {
             val password = view.Password.text.toString()
             val password2 = view.RepeatPassword.text.toString()
 
-            // TODO add more fields to register
 
             if (login == "" || password == "" || password2 == "" || name == "" || surname == "" || position == "" || email == "") {
                 Toast.makeText(requireContext(), "Fill all fields", Toast.LENGTH_SHORT).show()

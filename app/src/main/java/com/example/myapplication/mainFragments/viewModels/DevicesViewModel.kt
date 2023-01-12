@@ -10,8 +10,6 @@ class DevicesViewModel : ViewModel() {
     val isScanning = Scanner.isScanning
 
     fun switchScanning() {
-        //TODO usuń to
-        //TODO angry react :/
         val currentState = isScanning.value!!
         if (currentState) {
             Scanner.stopBleScan()

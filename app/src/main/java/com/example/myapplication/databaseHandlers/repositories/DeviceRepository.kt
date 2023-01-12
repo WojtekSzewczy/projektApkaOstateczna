@@ -16,4 +16,10 @@ class DeviceRepository(context: Context) {
     {
         deviceDao.addDevice(device.ownerID,device.password,device.type,device.description,device.wifi,device.connection,device.googleassistant,device.location,device.MACaddress)
     }
+    fun getDeviceById(deviceId :Int): Device{
+        return deviceDao.getDeviceById(deviceId)
+    }
+    fun getDevicePassword(deviceId: Int):String{
+        return deviceDao.getDevicePassword(deviceId)
+    }
 }

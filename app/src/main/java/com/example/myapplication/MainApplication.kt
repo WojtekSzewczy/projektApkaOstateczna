@@ -10,11 +10,9 @@ class MainApplication : Application() {
 
         super.onCreate()
         appContext = this
-        //TODO admin moze usuwac/dodawac userów , jesli admin nie nada uprawnien to nie widzis urzadzen w sali, admin moze usuwac dowolny pokoj a user tylko swój
-        // nowy fragment dla admina do usuwania userow
+        //TODO  jesli admin nie nada uprawnien to nie widzis urzadzen w sali, admin moze usuwac dowolny pokoj a user tylko swój
     }
     fun dokumentacja(){
-        // TODO
     }
 
     companion object {
