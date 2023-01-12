@@ -1,9 +1,23 @@
 package com.example.myapplication.databaseHandlers.models
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "RoomHistory")
+@RequiresApi(Build.VERSION_CODES.O)
+@Entity(tableName = "RoomHistory",
+    foreignKeys = [ForeignKey(entity = MyRoom::class,
+        parentColumns = arrayOf("roomID"),
+        childColumns = arrayOf("roomID"),
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE),
+    ForeignKey(entity = Device::class,
+        parentColumns = arrayOf("DeviceID"),
+        childColumns = arrayOf("deviceID"),
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE)])
 data class RoomHistory(
     var roomID: Int,
     var deviceID: Int

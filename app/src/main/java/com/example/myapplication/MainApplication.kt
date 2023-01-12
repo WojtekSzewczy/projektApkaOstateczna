@@ -19,7 +19,7 @@ class MainApplication : Application() {
         val adminID =1
         var isAdmin: Boolean = false
         lateinit var appContext: Context
-        lateinit var currentUser: User
+        var currentUser: User? = null
         var currentUserID= -1
     }
 }

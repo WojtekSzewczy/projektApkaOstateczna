@@ -1,9 +1,20 @@
 package com.example.myapplication.databaseHandlers.models
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "reservation")
+@RequiresApi(Build.VERSION_CODES.O)
+@Entity(tableName = "reservation",
+    indices = [Index(value = ["reservationID"], unique = true)],
+    foreignKeys = [ForeignKey(entity = User::class,
+        parentColumns = arrayOf("UserID"),
+        childColumns = arrayOf("bookerID"),
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE)])
 data class Reservation(
     var bookerID: Int,
     var reservationStart:String,

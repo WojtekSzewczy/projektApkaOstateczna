@@ -13,6 +13,9 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE login = :login AND password = :password")
     fun getUser(login : String, password : String): User
 
+    @Query("SELECT * FROM user where email = :email")
+    fun getUserByEmail(email : String) : User
+
     @Query("SELECT EXISTS(SELECT * FROM user WHERE email = :email)")
     fun checkIfUserExistsByEmail(email : String) : Boolean
 
@@ -27,6 +30,12 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE UserID = :userId")
     fun getUserById(userId: Int):User
+
+    @Delete
+    fun deleteUser(user: User)
+
+    @Query("UPDATE user SET Email = :newEmail WHERE Email = :email")
+    fun updateEmail(email: String, newEmail: String)
 
 
 }
