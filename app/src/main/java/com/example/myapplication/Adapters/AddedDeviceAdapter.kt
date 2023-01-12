@@ -1,7 +1,9 @@
 package com.example.myapplication.Adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.myapplication.databaseHandlers.models.Device
@@ -17,6 +19,7 @@ class AddedDeviceAdapter : ListAdapter<Device, AddedDeviceViewHolder>(AddedDevic
         return AddedDeviceViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AddedDeviceViewHolder, position: Int) {
         val device = getItem(position)
         holder.bind(device)

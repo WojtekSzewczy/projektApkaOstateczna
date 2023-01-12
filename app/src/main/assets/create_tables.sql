@@ -43,10 +43,10 @@ create table Reservation
             on update cascade on delete cascade,
     ReservationStart TEXT    not null,
     ReservationEnd   TEXT    not null,
-    check (ReservationEnd REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$' AND
-           strftime('%Y-%m-%dT%H:%M:%S', ReservationEnd) = ReservationEnd),
-    check (ReservationStart REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$' AND
-           strftime('%Y-%m-%dT%H:%M:%S', ReservationStart) = ReservationStart)
+    check (ReservationEnd REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}$' AND
+           strftime('%Y-%m-%dT%H:%M', ReservationEnd) = ReservationEnd),
+    check (ReservationStart REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}$' AND
+           strftime('%Y-%m-%dT%H:%M', ReservationStart) = ReservationStart)
 );
 
 create table Reservation_Device

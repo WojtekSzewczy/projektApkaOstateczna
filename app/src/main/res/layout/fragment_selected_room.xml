@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Users"
+        android:text="Użytkownicy"
         app:layout_constraintBottom_toTopOf="@+id/user_list"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
-        android:text="TextView"
+        android:text="Urządzenia"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,8 @@ class DeviceViewHolder(private val binding: ScannedDeviceLayoutBinding) :
                     ScanFragmentDirections.actionDevicesFragmentToNewDeviceFragment(device.result)
                 Navigation.findNavController(binding.root).navigate(action)
                 clearHomeFragment()
+                Scanner.connect(device.result)
+                Thread.sleep(2500)
             } else {
                 Toast.makeText(
                     MainApplication.appContext,

@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.MainActivity
 import com.example.myapplication.MainApplication
+import com.example.myapplication.Scanner
 import com.example.myapplication.data.AddedDevice
 import com.example.myapplication.databaseHandlers.models.Device
 import com.example.myapplication.databaseHandlers.repositories.DeviceRepository
@@ -59,7 +60,7 @@ class NewDeviceFragment : Fragment() {
         view.editTextTextPersonName.setText(addedDevice.name)
         val roomsArray= myRoomRepository.getAllRooms()
 
-        view.textview.text=addedDevice.address
+        view.textview.text=Scanner.uuids
 
         view.spinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
 

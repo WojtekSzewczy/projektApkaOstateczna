@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#383838"
+    app:cardBackgroundColor="#24B802"
     app:cardElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +45,15 @@
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/device_name"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/isReserved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Urządzenie jest dostępne"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/device_address" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

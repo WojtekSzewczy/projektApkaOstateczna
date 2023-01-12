@@ -56,7 +56,7 @@ object Scanner {
 
         }
     }
-    fun getUUIDs(): String = buildString {
+    private fun getUUIDs(): String = buildString {
         bluetoothGatt?.services?.forEach {
             append("SERVICE  UUID: ")
             append(it.uuid)
