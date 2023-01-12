@@ -11,16 +11,16 @@
         android:id="@+id/addRoomButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    />
 
     <Button
         android:id="@+id/addRoomToDatabaseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Add room"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/roomName"
@@ -28,11 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="name"
+        android:hint="Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/roomPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/roomPassword"
@@ -40,11 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/roomMax"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/roomMax"
@@ -52,10 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
         android:ems="10"
-        android:hint="maxParticipants"
+        android:hint="Max participants"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/addRoomToDatabaseButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

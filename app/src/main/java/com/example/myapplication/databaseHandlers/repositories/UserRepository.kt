@@ -35,10 +35,22 @@ class UserRepository(context: Context) {
 
     fun getAllUsers() : List<User> = userDao.getAllUsers()
 
+    fun deleteUser(user: User) = userDao.deleteUser(user)
+
     fun checkIfUserExistsByEmail(email : String) : Boolean = userDao.checkIfUserExistsByEmail(email)
 
     fun updatePassword(email: String, newPassword: String)
     {
-        userDao.updatePassword(email, newPassword)
+        val md = MessageDigest.getInstance("SHA-256")
+        val passwordBytes = newPassword.toByteArray(Charsets.UTF_8)
+        val hash = md.digest(passwordBytes)
+        val hashedPassword = Base64.getEncoder().encodeToString(hash)
+
+        userDao.updatePassword(email, hashedPassword)
+    }
+
+    fun updateEmail(email: String, newEmail: String)
+    {
+        userDao.updateEmail(email, newEmail)
     }
 }

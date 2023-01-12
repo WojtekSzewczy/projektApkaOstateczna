@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.Ignore
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.myapplication.data.AddedDevice
 import java.security.MessageDigest
@@ -12,7 +13,10 @@ import java.util.Base64
 
 @RequiresApi(Build.VERSION_CODES.O)
 
-@Entity(tableName = "User")
+@Entity(tableName = "User",
+    indices = [Index(value = ["UserID"], unique = true),
+        Index(value = ["Email"], unique = true),
+        Index(value = ["Login"], unique = true)])
 data class User(
                 var Name: String,
                 var Surname : String,

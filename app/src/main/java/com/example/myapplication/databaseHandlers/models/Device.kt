@@ -5,7 +5,14 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.*
 
-@Entity(tableName = "device")
+@RequiresApi(Build.VERSION_CODES.O)
+@Entity(tableName = "device",
+        indices = [Index(value = ["DeviceID"], unique = true)],
+    foreignKeys = [ForeignKey(entity = User::class,
+        parentColumns = arrayOf("UserID"),
+        childColumns = arrayOf("OwnerID"),
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE)])
 data class Device @RequiresApi(Build.VERSION_CODES.O) constructor(
     @ColumnInfo(name = "OwnerID")
     var ownerID: Int,

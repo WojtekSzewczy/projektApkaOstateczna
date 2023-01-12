@@ -33,6 +33,42 @@ class AccountFragment : Fragment() {
 
         view = FragmentAccountBinding.inflate(inflater, container, false)
 
+        view.logOut.setOnClickListener {
+            MainApplication.currentUser = null
+            MainApplication.currentUserID = -1
+            MainApplication.isAdmin = false
+            MainActivity.instance.bottomNavigationView.visibility = View.INVISIBLE
+            Navigation.findNavController(view.root).navigate(R.id.action_accountFragment2_to_mainFragment3)
+        }
+
+        view.changePassword.setOnClickListener {
+            if(view.Password.text.toString() == view.RepeatPassword.text.toString()){
+                userRepository.updatePassword(MainApplication.currentUser!!.Email, view.Password.text.toString())
+                Toast.makeText(requireContext(), "Password changed", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(requireContext(), "Passwords don't match", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        view.removeAccount.setOnClickListener {
+            userRepository.deleteUser(MainApplication.currentUser!!)
+            MainApplication.currentUser = null
+            MainApplication.currentUserID = -1
+            MainApplication.isAdmin = false
+            MainActivity.instance.bottomNavigationView.visibility = View.INVISIBLE
+            Navigation.findNavController(view.root).navigate(R.id.action_accountFragment2_to_mainFragment3)
+        }
+
+        view.changeEmail.setOnClickListener {
+            if(view.newEmail.text.toString() != ""){
+                userRepository.updateEmail(MainApplication.currentUser!!.Email, view.newEmail.text.toString())
+                Toast.makeText(requireContext(), "Email changed", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(requireContext(), "Email can't be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         return view.root

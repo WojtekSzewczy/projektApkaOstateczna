@@ -86,12 +86,8 @@ class ResetPasswordFragment : Fragment() {
             if (verificationCode == view.EmailCode.text.toString().toInt()) {
                 if (view.newPassword.text.toString() == view.repeatPassword.text.toString()) {
 
-                    var newPassword = view.newPassword.text.toString()
+                    val newPassword = view.newPassword.text.toString()
 
-                    val md = MessageDigest.getInstance("SHA-256")
-                    val passwordBytes = newPassword.toByteArray(Charsets.UTF_8)
-                    val hash = md.digest(passwordBytes)
-                    newPassword = Base64.getEncoder().encodeToString(hash)
 
                     userRepository.updatePassword(view.Email.text.toString(), newPassword)
 

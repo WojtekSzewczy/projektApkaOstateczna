@@ -112,5 +112,7 @@
         android:id="@+id/accountFragment2"
         android:name="com.example.myapplication.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action android:id="@+id/action_accountFragment2_to_mainFragment3" app:destination="@id/mainFragment3"/>
+    </fragment>
 </navigation>

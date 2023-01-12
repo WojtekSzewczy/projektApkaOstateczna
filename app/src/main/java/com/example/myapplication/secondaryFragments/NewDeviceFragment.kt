@@ -87,7 +87,7 @@ class NewDeviceFragment : Fragment() {
                 addedDevice.name=description
                 addedDevice.type=deviceType
 
-                MainApplication.currentUser.addDevice(addedDevice)
+                MainApplication.currentUser?.addDevice(addedDevice)
                 Navigation.findNavController(view.root).navigateUp()
             }
         }
