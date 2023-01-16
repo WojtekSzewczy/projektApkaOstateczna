@@ -25,6 +25,7 @@ class UsersAdapter : ListAdapter<User, UserViewHolder>(UserCallback()) {
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val device = getItem(position)
         holder.bind(device)
+        holder.getAdapter(this)
     }
 }
 

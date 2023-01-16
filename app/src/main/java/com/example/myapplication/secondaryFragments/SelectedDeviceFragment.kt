@@ -63,6 +63,7 @@ class SelectedDeviceFragment : Fragment() {
         allRooms.forEach {
             roomsName.add(it.roomID)
         }
+        view.deviceName.text= deviceRepository.getDeviceById(args.deviceID).description
 
 
         val arrayAdapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,roomsName)
@@ -176,7 +177,7 @@ class SelectedDeviceFragment : Fragment() {
 
     private fun updateDateEnd() {
         val myFormat = "yyyy/dd/MM" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        val sdf = SimpleDateFormat(myFormat)
         view.EndDate.text = sdf.format(cal.time)
     }
 
@@ -197,7 +198,7 @@ class SelectedDeviceFragment : Fragment() {
     }
     private fun updateDateStart() {
         val myFormat = "yyyy/dd/MM" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        val sdf = SimpleDateFormat(myFormat)
         view.startDate.text = sdf.format(cal.time)
     }
 

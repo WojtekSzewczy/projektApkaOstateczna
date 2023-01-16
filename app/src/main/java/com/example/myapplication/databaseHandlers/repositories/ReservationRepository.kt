@@ -17,4 +17,14 @@ class ReservationRepository(context: Context) {
     fun getReservationId(bookerId: Int, reservationStart :String, reservationEnd : String): Int{
         return reservationDao.getReservationId(bookerId,reservationStart,reservationEnd)
     }
+
+    fun getReservationStart(reservationId : Int): String{
+        return reservationDao.getReservationStart(reservationId)
+    }
+
+    fun getReservationEnd(reservationId : Int): String{
+        return reservationDao.getReservationEnd(reservationId)
+    }
+
+
 }

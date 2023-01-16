@@ -12,9 +12,12 @@ class DeviceRepository(context: Context) {
 
     fun getAllDevices() : List<Device> = deviceDao.getAllDevices()
 
-    fun addDevice(device: Device)
+    fun addDevice(device: Device?)
     {
-        deviceDao.addDevice(device.ownerID,device.password,device.type,device.description,device.wifi,device.connection,device.googleassistant,device.location,device.MACaddress)
+        if(device?.MACaddress==null){
+            device?.MACaddress="null"
+        }
+        deviceDao.addDevice(device?.ownerID,device?.password,device?.type,device?.description,device?.wifi,device?.connection,device?.googleassistant,device?.location,device?.MACaddress)
     }
     fun getDeviceById(deviceId :Int): Device{
         return deviceDao.getDeviceById(deviceId)

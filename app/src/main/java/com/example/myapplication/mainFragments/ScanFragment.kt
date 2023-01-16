@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.myapplication.Adapters.DeviceAdapter
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
@@ -42,12 +43,18 @@ class ScanFragment : Fragment() {
         view.scanButton.setOnClickListener {
             viewModel.switchScanning()
         }
+        view.fakeDevice.setOnClickListener {
+            val action =
+                ScanFragmentDirections.actionDevicesFragmentToNewDeviceFragment(null)
+            Navigation.findNavController(view.root).navigate(action)
+        }
         observeViewModelState()
 
 //        view.device.setOnClickListener {
 //            Navigation.findNavController(view.root).navigate(R.id.action_devicesFragment_to_newDeviceFragment)
 //
 //        }
+
 
         return view.root
     }
@@ -72,6 +79,7 @@ class ScanFragment : Fragment() {
         viewModel.isScanning.observe(viewLifecycleOwner) { currentState ->
             view.scanButton.text =
                 if (currentState) getString(R.string.stop) else getString(R.string.scan)
+
         }
     }
 

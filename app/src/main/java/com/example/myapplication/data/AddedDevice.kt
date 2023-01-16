@@ -1,12 +1,13 @@
 package com.example.myapplication.data
 
+import android.annotation.SuppressLint
 import android.bluetooth.le.ScanResult
 import android.util.Log
 
-data class AddedDevice( val result: ScanResult){
+data class AddedDevice( val result: ScanResult?){
     private lateinit var password :String
-    var name = result.device.name
-    val address = result.device.address
+    var name = result?.device?.name
+    var address = result?.device?.address
     lateinit var type:String
     private lateinit var room: Room
 

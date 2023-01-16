@@ -31,7 +31,7 @@ data class Device @RequiresApi(Build.VERSION_CODES.O) constructor(
     @ColumnInfo(name = "Location")
     var location: String,
     @ColumnInfo(name = "MACaddress")
-    var MACaddress : String){
+    var MACaddress : String?){
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "DeviceID")

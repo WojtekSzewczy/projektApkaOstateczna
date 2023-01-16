@@ -27,7 +27,7 @@ class NewDeviceFragment : Fragment() {
     private lateinit var view: FragmentNewDeviceBinding
     private val args: NewDeviceFragmentArgs by navArgs()
     private lateinit var deviceType: String
-    private lateinit var addedDevice :AddedDevice
+    var addedDevice :AddedDevice?= null
     private lateinit var myRoomRepository: MyRoomRepository
     private lateinit var deviceRepository: DeviceRepository
 
@@ -38,6 +38,7 @@ class NewDeviceFragment : Fragment() {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                Scanner.disconnect()
                 view.root.findNavController().navigateUp()
             }
         })
@@ -55,9 +56,9 @@ class NewDeviceFragment : Fragment() {
         // Inflate the layout for this fragment
         view= FragmentNewDeviceBinding.inflate(inflater, container, false)
 
-        addedDevice= AddedDevice(args.scanResult)
+        addedDevice=  AddedDevice(args.scanResult)
 
-        view.editTextTextPersonName.setText(addedDevice.name)
+        view.editTextTextPersonName.setText(addedDevice?.name)
         val roomsArray= myRoomRepository.getAllRooms()
 
         view.textview.text=Scanner.uuids
@@ -83,13 +84,14 @@ class NewDeviceFragment : Fragment() {
                 val password = view.editTextTextPassword3.text.toString()
                 val description =view.editTextTextPersonName.text.toString()
 
-                val device = Device(MainApplication.currentUserID,password,deviceType,description,1,"very high quality my friend",1,"Tylko huta",addedDevice.address)
+                val device = Device(MainApplication.currentUserID,password,deviceType,description,1,"very high quality my friend",1,"Tylko huta",addedDevice?.address)
                 deviceRepository.addDevice(device)
-                addedDevice.setPassword(password)
-                addedDevice.name=description
-                addedDevice.type=deviceType
+                addedDevice?.setPassword(password)
+                addedDevice?.name=description
+                addedDevice?.type=deviceType
 
-                MainApplication.currentUser?.addDevice(addedDevice)
+                //MainApplication.currentUser?.addDevice(addedDevice)
+                Scanner.disconnect()
                 Navigation.findNavController(view.root).navigateUp()
             }
         }

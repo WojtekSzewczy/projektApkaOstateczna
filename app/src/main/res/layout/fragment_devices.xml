@@ -16,10 +16,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <Button
+        android:id="@+id/fakeDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/devices_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="200dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"

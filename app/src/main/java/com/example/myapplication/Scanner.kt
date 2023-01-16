@@ -23,7 +23,7 @@ object Scanner {
 
         bluetoothManager.adapter
     }
-    public var uuids="kk"
+    public var uuids="could not find avialable services"
 
     private val handler = Handler(Looper.getMainLooper())
     private val DELAY_PERIOD: Long = 500
@@ -38,6 +38,7 @@ object Scanner {
                     gatt.discoverServices()
                 }
                 BluetoothAdapter.STATE_DISCONNECTED -> {
+                    uuids="could not find avialable services"
                     gatt.close()
                     bluetoothGatt=null
                 }
@@ -142,6 +143,11 @@ object Scanner {
         bluetoothGatt = result.device.connectGatt(
             MainApplication.appContext, false, bluetoothGattCallback
         )
+    }
+
+    fun disconnect(){
+        bluetoothGatt?.let { it.disconnect()
+        Log.v("disconnect", "disconnect")}
     }
 
 

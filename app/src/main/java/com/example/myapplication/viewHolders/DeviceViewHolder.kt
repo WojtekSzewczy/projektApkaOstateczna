@@ -24,13 +24,24 @@ class DeviceViewHolder(private val binding: ScannedDeviceLayoutBinding) :
             Log.v("click", device.address)
 
 
+
             if (MainApplication.isAdmin) {
-                val action =
-                    ScanFragmentDirections.actionDevicesFragmentToNewDeviceFragment(device.result)
-                Navigation.findNavController(binding.root).navigate(action)
-                clearHomeFragment()
-                Scanner.connect(device.result)
-                Thread.sleep(2500)
+                if(device.result.rssi>-90){
+                    val action =
+                        ScanFragmentDirections.actionDevicesFragmentToNewDeviceFragment(device.result)
+                    Scanner.connect(device.result)
+                    Thread.sleep(3000)
+                    Navigation.findNavController(binding.root).navigate(action)
+                    clearHomeFragment()
+                }else{
+                    Toast.makeText(
+                        MainApplication.appContext,
+                        "device is not in range",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+
             } else {
                 Toast.makeText(
                     MainApplication.appContext,

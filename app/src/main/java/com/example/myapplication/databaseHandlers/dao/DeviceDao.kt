@@ -11,7 +11,7 @@ interface DeviceDao {
     fun getAllDevices() : List<Device>
 
     @Query("INSERT INTO device (OwnerID,Password,Type,Description,Wifi,Connection,GoogleAssistant,Location,MACaddress) VALUES (:ownerID,:password,:type,:description,:wifi,:connection,:googleassistant,:location,:MACaddress)")
-    fun addDevice(ownerID: Int,password: String,type: String,description: String,wifi: Int,connection: String,googleassistant: Int,location: String,MACaddress: String)
+    fun addDevice(ownerID: Int?,password: String?,type: String?,description: String?,wifi: Int?,connection: String?,googleassistant: Int?,location: String?,MACaddress: String?)
 
     @Query("SELECT * FROM device where DEVICEID = :deviceId")
     fun getDeviceById(deviceId: Int):Device

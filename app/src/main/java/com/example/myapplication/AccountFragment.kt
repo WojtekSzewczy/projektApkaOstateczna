@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.myapplication.databaseHandlers.models.User
 import com.example.myapplication.databaseHandlers.repositories.UserRepository
 import com.example.myapplication.databinding.FragmentAccountBinding
@@ -22,6 +24,11 @@ class AccountFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                view.root.findNavController().navigateUp()
+            }
+        })
         userRepository = UserRepository(requireContext())
     }
 
